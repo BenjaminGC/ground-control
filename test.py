@@ -2,12 +2,15 @@ import serial
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
+conv_f = 1.852
 
 
 def gps_speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
-    print(data_line[0])
+    if data_line[0] == '$GPRMC':
+        speed = float(data_line[7].replace(".", ","))*conv_f
+        print("Speed: {} km/h".format(speed))
 
 
 while status:
