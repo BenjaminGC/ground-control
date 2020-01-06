@@ -54,10 +54,14 @@ while status:
     try:
         if answer == 'Location':
             gps_loc(gps)
-        elif answer == 'Speed':
+        if answer == 'Speed':
             gps_speed(gps)
+        else:
+            pass
     except UnicodeDecodeError:
         if answer == 'Location':
             gps_loc(gps)
-        elif answer == 'Speed':
+        if answer == 'Speed':
             gps_speed(gps)
+        else:
+            pass
