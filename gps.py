@@ -3,7 +3,7 @@ import serial
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800)
 
 for i in range(0, 20):
-    line = str(gps.readline(), 'ASCII')
+    line = str(gps.readline())
     data_line = line.split(',')
     if data_line[0] == '$GPGGA':
         print('Local Time: {} Z, Latitude: {} {}, Longitude: {} {}, Altitude: {}'.format(data_line[1], data_line[2], data_line[3], 
