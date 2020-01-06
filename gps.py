@@ -29,8 +29,8 @@ for i in range(0, 20):
         altitude = data_line[9]
         satellites_in_use = data_line[7]
         print('Local Time (SH): {} Z, Latitude: {}, Longitude: {}, Altitude (MSL): {}'.format(local_time, lat, lon, altitude))
-        print('\n')
         print('Satellites in use: {}'.format(satellites_in_use))
+        print('\n')
     else:
         pass
 
