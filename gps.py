@@ -1,7 +1,7 @@
 import serial
 
-gps = serial.Serial("/dev/ttyUSB0", baudrate=4800)
-
+gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
+status = True
 
 def degrees(pos):
     split_pos = pos.split('.')
@@ -46,7 +46,7 @@ def gps_speed(data):
         print('\n')
 
 
-for i in range(0, 20):
+while status:
     try:
         gps_loc(gps)
         gps_speed(gps)
