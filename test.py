@@ -1,5 +1,15 @@
-local_time = '215042.000'
-test = local_time.replace('.', ',')
-print(test)
-local_time = local_time[:6]
-print(local_time)
+import serial
+
+gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
+status = True
+
+
+def gps_speed(data):
+    line = str(data.readline(), 'ASCII')
+    data_line = line.split(',')
+    if data_line[0] == '$GPVTG':
+        print(data_line)
+
+
+while status:
+    gps_speed(gps)
