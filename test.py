@@ -11,7 +11,7 @@ def gps_speed(data):
         data_line = line.split(',')
         if data_line[0] == '$GPRMC':
             speed = float(data_line[7])*conv_f
-            if speed <= 0.5:
+            if speed <= 1.0:
                 speed = 0
             else:
                 pass
