@@ -43,7 +43,7 @@ def gps_speed(data_line):
 
 
 for i in range(0, 20):
-    line = str(data.readline(), 'ASCII')
+    line = str(gps.readline(), 'ASCII')
     data_line = line.split(',')
     try:
         gps_data(data_line)
