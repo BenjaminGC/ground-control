@@ -46,7 +46,7 @@ def gps_speed(data):
         print('\n')
 
 
-a = str(input("Location/Speed? "))
+answer = str(input("Location/Speed? "))
         
 while status:
     try:
