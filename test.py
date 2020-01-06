@@ -19,7 +19,7 @@ def gps_speed(data):
             file.write(str(speed))
 
 
-while status:
+for i in range(0, 25):
     try:
         gps_speed(gps)
     except UnicodeDecodeError:
