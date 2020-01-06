@@ -32,6 +32,6 @@ def gps_loc(gps):
 
 while status:
     try:
-        gpc_loc(gps)
+        gps_loc(gps)
     except UnicodeDecodeError:
         gps_loc(gps)
