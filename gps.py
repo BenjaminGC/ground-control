@@ -12,7 +12,7 @@ for i in range(0, 20):
                                                                                    )
              )
         print('\n')
-        print('Satellites in use: {}'.format(data_line[7])
+        print('Satellites in use: {}'.format(data_line[7]))
     # if data_line[0] == '$GPGSV':
     #    print('Satellites in view: {}'.format(data_line[3])
     #    print('Current sattelite data:
