@@ -11,7 +11,14 @@ def gps_speed(data):
     if data_line[0] == '$GPRMC':
         speed = float(data_line[7])*conv_f
         print("Speed: {} km/h".format(speed))
+        return speed
 
 
 while status:
-    gps_speed(gps)
+    with open("speed.txt", "w") as v_t:
+        try:
+            speed = gps_speed(gps)
+            v_t.write(speed)
+        except UnicodeDecodeError:
+            speed = gps_speed(gps)
+            v_t.write(speed)
