@@ -9,7 +9,7 @@ def gps_speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
-        speed = float(data_line[7].replace(".", ","))*conv_f
+        speed = float(data_line[7])*conv_f
         print("Speed: {} km/h".format(speed))
 
 
