@@ -34,6 +34,9 @@ def gps_data(data):
                                                                                                   , lon
                                                                                                   , altitude))
             print('Satellites in use: {}'.format(satellites_in_use))
+        if data_line[0] == '$GPVTG':
+            speed = str(data_line[7].replace('.', ',') + '\1km/h')
+            print('Speed: {}'.format(speed))
             print('----------------------------------------------------------------------------------------------------'
                   '---------------------------')
         else:
