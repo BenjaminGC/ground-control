@@ -45,18 +45,17 @@ def gps_speed(data):
         print('Speed: {}'.format(speed))
         print('\n')
 
-        
-def choice(answer):
-    if answer == 'location' or 'Location':
-        gps_loc(gps)
-    elif answer == 'speed' or 'Speed':
-        gps_speed(gps)
 
-
-a = str(input("Location/Speed"))
+a = str(input("Location/Speed? "))
         
 while status:
     try:
-        choice(a)
+        if answer == 'location' or 'Location':
+            gps_loc(gps)
+        elif answer == 'speed' or 'Speed':
+            gps_speed(gps)
     except UnicodeDecodeError:
-        choice(a)
+        if answer == 'location' or 'Location':
+            gps_loc(gps)
+        elif answer == 'speed' or 'Speed':
+            gps_speed(gps)
