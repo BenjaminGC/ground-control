@@ -12,7 +12,7 @@ def gps_speed(data):
         if data_line[0] == '$GPRMC':
             speed = float(data_line[7])*conv_f
             print("Speed: {} km/h".format(speed))
-            file.write(speed)
+            file.write(str(speed))
 
 
 while status:
