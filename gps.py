@@ -48,8 +48,8 @@ def gps_speed(data):
 
 for i in range(0, 20):
     try:
-        gps_data(gps)
+        gps_loc(gps)
         gps_speed(gps)
     except UnicodeDecodeError:
-        gps_data(gps)
+        gps_loc(gps)
         gps_speed(gps)
