@@ -48,9 +48,9 @@ def gps_speed(data):
         
 def choice(answer):
     if answer == 'location' or 'Location':
-            gps_loc(gps)
-        elif answer == 'speed' or 'Speed':
-            gps_speed(gps)
+        gps_loc(gps)
+    elif answer == 'speed' or 'Speed':
+        gps_speed(gps)
 
 
 a = str(input("Location/Speed"))
