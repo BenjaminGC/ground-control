@@ -2,6 +2,7 @@ import serial
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800)
 
-for i in range(0, 10):
+while True:
     line = gps.readline()
-    print(line)
+    data = line.split(",")
+    print(data, len(data))
