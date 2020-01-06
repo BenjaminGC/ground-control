@@ -5,7 +5,7 @@ status = True
 conv_f = 1.852
 
 
-def gps_speed(data):
+def gps_speed(data, index):
     with open('speed.txt', 'w') as file:
         line = str(data.readline(), 'ASCII')
         data_line = line.split(',')
@@ -16,11 +16,11 @@ def gps_speed(data):
             else:
                 pass
             print("Speed: {} km/h".format(speed))
-            file.write(str(speed))
+            file.write("{}, {}".format(i, str(speed))
 
 
 for i in range(0, 25):
     try:
-        gps_speed(gps)
+        gps_speed(gps, i)
     except UnicodeDecodeError:
-        gps_speed(gps)
+        gps_speed(gps, i)
