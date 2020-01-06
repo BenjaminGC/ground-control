@@ -16,7 +16,7 @@ def gps_speed(data, index):
             else:
                 pass
             print("Speed: {} km/h".format(speed))
-            file.write("{}, {}".format(i, str(speed))
+            file.write("{}, {}".format(i, str(speed)))
 
 
 for i in range(0, 25):
