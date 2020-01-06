@@ -15,7 +15,7 @@ def gps_loc(gps):
                 lat_gps = -lat_gps
 
             lat_deg = int(lat_gps/100)
-            lat_min = lat_gps - lat_gps*100
+            lat_min = lat_gps - lat_deg*100
             lat = lat_deg + (lat_min/60)
 
             long_gps = float(data[5])
