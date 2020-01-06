@@ -48,8 +48,6 @@ def gps_speed(data):
 
 while status:
     try:
-        gps_loc(gps)
-        gps_speed(gps)
+        gps_loc(gps) and gps_speed(gps)
     except UnicodeDecodeError:
-        gps_loc(gps)
-        gps_speed(gps)
+        gps_loc(gps) and gps_speed(gps)
