@@ -18,10 +18,7 @@ def degrees(pos):
         return location
 
 
-def gps_data(data):
-    for i in range(0, 20):
-        line = str(data.readline(), 'ASCII')
-        data_line = line.split(',')
+def gps_loc(data_line):
         if data_line[0] == '$GPGGA':
             local_time = data_line[1][:6]
             local_time = str("{}:{}:{}".format(local_time[0:2], local_time[2:4], local_time[4:6]))
@@ -34,16 +31,23 @@ def gps_data(data):
                                                                                                   , lon
                                                                                                   , altitude))
             print('Satellites in use: {}'.format(satellites_in_use))
-        if data_line[0] == '$GPVTG':
-            speed = str(data_line[7].replace('.', ',') + '\1km/h')
-            print('Speed: {}'.format(speed))
-            print('----------------------------------------------------------------------------------------------------'
-                  '---------------------------')
         else:
             pass
 
 
-try:
-    gps_data(gps)
-except UnicodeDecodeError:
-    gps_data(gps)
+def gps_speed(data_line):
+    if data_line[0] == '$GPVTG':
+        speed = str(data_line[7].replace('.', ',') + '\1km/h')
+        print('Speed: {}'.format(speed))
+        print('\n')
+
+
+for i in range(0, 20):
+    line = str(data.readline(), 'ASCII')
+    data_line = line.split(',')
+    try:
+        gps_data(data_line)
+        gps_speed(data_line)
+    except UnicodeDecodeError:
+        gps_data(data_line)
+        gps_speed(data_line)
