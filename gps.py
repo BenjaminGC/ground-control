@@ -21,20 +21,20 @@ def degrees(pos):
 def gps_loc(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
-        if data_line[0] == '$GPGGA':
-            local_time = data_line[1][:6]
-            local_time = str("{}:{}:{}".format(local_time[0:2], local_time[2:4], local_time[4:6]))
-            lat = str(degrees(data_line[2]) + data_line[3])
-            lon = str(degrees(data_line[4]) + data_line[5])
-            altitude = data_line[9]
-            satellites_in_use = data_line[7]
-            print('Local Time (SH): {} Z, Latitude: {}, Longitude: {}, Altitude (MSL): {}'.format(local_time
+    if data_line[0] == '$GPGGA':
+        local_time = data_line[1][:6]
+        local_time = str("{}:{}:{}".format(local_time[0:2], local_time[2:4], local_time[4:6]))
+        lat = str(degrees(data_line[2]) + data_line[3])
+        lon = str(degrees(data_line[4]) + data_line[5])
+        altitude = data_line[9]
+        satellites_in_use = data_line[7]
+        print('Local Time (SH): {} Z, Latitude: {}, Longitude: {}, Altitude (MSL): {}'.format(local_time
                                                                                                   , lat
                                                                                                   , lon
                                                                                                   , altitude))
-            print('Satellites in use: {}'.format(satellites_in_use))
-        else:
-            pass
+        print('Satellites in use: {}'.format(satellites_in_use))
+    else:
+        pass
 
 
 def gps_speed(data):
