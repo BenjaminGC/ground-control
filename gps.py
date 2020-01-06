@@ -52,12 +52,12 @@ answer = str(input("Location/Speed? "))
         
 while status:
     try:
-        if answer == 'location' or 'Location':
+        if answer == 'Location':
             gps_loc(gps)
-        elif answer == 'speed' or 'Speed':
+        elif answer == 'Speed':
             gps_speed(gps)
     except UnicodeDecodeError:
-        if answer == 'location' or 'Location':
+        if answer == 'Location':
             gps_loc(gps)
-        elif answer == 'speed' or 'Speed':
+        elif answer == 'Speed':
             gps_speed(gps)
