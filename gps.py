@@ -44,6 +44,8 @@ def gps_speed(data):
         speed = str(data_line[7].replace('.', ',') + '\1km/h')
         print('Speed: {}'.format(speed))
         print('\n')
+    else:
+        pass
 
 
 answer = str(input("Location/Speed? "))
