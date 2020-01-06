@@ -7,8 +7,7 @@ status = True
 def gps_speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
-    if data_line[0] == '$GPVTG':
-        print(data_line)
+    print(data_line[0])
 
 
 while status:
