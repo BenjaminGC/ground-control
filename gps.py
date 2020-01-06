@@ -22,7 +22,7 @@ for i in range(0, 20):
     line = str(gps.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPGGA':
-        local_time = str(int(data_line[1]))
+        local_time = data_line[1][:6]
         local_time = str("{}:{}:{}".format(local_time[0:2], local_time[2:4], local_time[4:6]))
         lat = str(degrees(data_line[2]) + data_line[3])
         lon = str(degrees(data_line[4]) + data_line[5])
