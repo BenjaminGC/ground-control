@@ -30,4 +30,6 @@ if running.status:
 else:
     pass
 
+message = input("Press ENTER to quit")
+
 GPIO.cleanup()
