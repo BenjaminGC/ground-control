@@ -17,11 +17,11 @@ class State:
         elif self.status:
             self.status = False
 
-
-message = input("Press enter to quit")
+            
 running = State(False)
 print(running.status)
-running.update()
 GPIO.add_event_detect(13, GPIO.RISING, callback=running.update)
+message = input("Press enter to quit")
 print(running.status)
+
 GPIO.cleanup()
