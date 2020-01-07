@@ -39,6 +39,8 @@ try:
             print("{}: {} km/h".format(index, speed))
 except KeyboardInterrupt:       # ctrl+c
     end_time = time.localtime()[3:6]
+    elapsed_time = end_time - start_time
     print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
+    print("Elapsed time: {}".format(elapsed_time))
 
     
