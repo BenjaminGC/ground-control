@@ -22,7 +22,7 @@ def conv(v):
         v = DEFAULT_VALUE
     else:
         pass
-    return v*conv_f
+    return float(v)*conv_f
 
 
 try:
