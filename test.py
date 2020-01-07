@@ -14,7 +14,6 @@ def gps_speed(data):
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
         speed = data_line[7]
-        time.sleep(1)
         return speed
 
         
@@ -23,7 +22,9 @@ while status:
         speed = gps_speed(gps)
         print("{}: {} km/h".format(index, speed))
         index += 1
+        time.sleep(1)
     except UnicodeDecodeError:
         speed = gps_speed(gps)
         print("{}: {} km/h".format(index, speed))
         index += 1
+        time.sleep(1)
