@@ -17,14 +17,16 @@ def gps_speed(data):
         return speed
 
         
-while status:
-    try:
-        speed = gps_speed(gps)
-        print("{}: {} km/h".format(index, speed))
-        index += 1
-        time.sleep(1)
-    except UnicodeDecodeError:
-        speed = gps_speed(gps)
-        print("{}: {} km/h".format(index, speed))
-        index += 1
-        time.sleep(1)
+try:
+    start_time = time.localtime()[3:6]
+    print("Time at start: {}:{}:{}".format(start_time[0], start_time[1], start_time[2]))
+    while status:
+        try:
+            speed = gps_speed(gps)
+            print("{}: {} km/h".format(index, speed))
+        except UnicodeDecodeError:
+            speed = gps_speed(gps)
+            print("{}: {} km/h".format(index, speed))
+except KeyboardInterrupt:
+    end_time = time.localtime()[3:6]
+    print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
