@@ -1,5 +1,6 @@
 import serial
 import csv
+import time
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
@@ -13,6 +14,7 @@ def gps_speed(data):
     if data_line[0] == '$GPRMC':
         speed = data_line[7]
         print(speed)
+        time.sleep(1)
 
         
 while status:
