@@ -1,37 +1,36 @@
 import serial
+import csv
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
+conv_f = 1.852
+DEFAULT_VALUE = 0.0
 
 
-def gps_loc(gps):
-    line = str(gps.readline(), 'ASCII')
-    data = line.split(",")
-    if data[0] == '$GPRMC':
-        if data[2] == 'A':
-
-            lat_gps = float(data[3])
-            if data[4] == "S":
-                lat_gps = -lat_gps
-
-            lat_deg = int(lat_gps/100)
-            lat_min = lat_gps - lat_deg*100
-            lat = lat_deg + (lat_min/60)
-
-            long_gps = float(data[5])
-            if data[4] == "W":
-                long_gps = - long_gps
-
-            long_deg = int(long_gps/100)
-            long_min = long_gps - long_deg*100
-            lon = long_deg + (long_min/60)
-
-            print("lat: {}".format(lat))
-            print("lon: {}".format(lon))
+def gps_speed(data):
+    line = str(data.readline(), 'ASCII')
+    data_line = line.split(',')
+    if data_line[0] == '$GPRMC':
+        speed = float(data_line[7])*conv_f
+        if speed <= 1.5:
+            speed = 0.0
+        else:
+            pass
+        return speed
 
 
-while status:
-    try:
-        gps_loc(gps)
-    except UnicodeDecodeError:
-        gps_loc(gps)
+with open('speed.csv', 'w', newline='') as file:
+    file_writer = csv.writer(file)
+    while status:
+        try:
+            speed = gps_speed(gps)
+            if speed is None:
+                speed = DEFAULT_VALUE
+            print("Speed: {} km/h".format(speed))
+            file_writer.writerow([float(speed)])
+        except UnicodeDecodeError:
+            speed = gps_speed(gps)
+            if speed is None:
+                speed = DEFAULT_VALUE
+            print("Speed: {} km/h".format(speed))
+            file_writer.writerow([float(speed)])
