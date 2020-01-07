@@ -21,7 +21,7 @@ def gps_speed(data):
 
 with open('speed.csv', 'w', newline='') as file:
     file_writer = csv.writer(file)
-    for i in range(0, 25):
+    while status:
         try:
             speed = gps_speed(gps)
             if speed is None:
