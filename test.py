@@ -25,6 +25,14 @@ def conv(v):
     return float(v)*conv_f
 
 
+def fault_margin(v):
+    if v > 1.5:
+        pass
+    else:
+        v = DEFAULT_VALUE
+    return v
+
+
 def elapsed_time(tuple_start, tuple_end):
     list_start = list(tuple_start)
     list_end = list(tuple_end)
@@ -40,11 +48,13 @@ try:
         try:
             speed = gps_speed(gps)
             speed = conv(speed)
+            speed = fault_margin(speed)
             print("{}: {} km/h".format(index, speed))
             index += 1
         except UnicodeDecodeError:
             speed = gps_speed(gps)
             speed = conv(speed)
+            speed = fault_margin(speed)
             print("{}: {} km/h".format(index, speed))
             index += 1
 except KeyboardInterrupt:       # ctrl+c
