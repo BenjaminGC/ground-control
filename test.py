@@ -41,26 +41,31 @@ def elapsed_time(tuple_start, tuple_end):
                          int(list_end[2]-list_start[2])]
     return list_elapsed_time
 
-try:
-    start_time = time.localtime()[3:6]
-    print("Time at start: {}:{}:{}".format(start_time[0], start_time[1], start_time[2]))
-    while status:
-        try:
-            speed = gps_speed(gps)
-            speed = conv(speed)
-            speed = fault_margin(speed)
-            print("{}: {} km/h".format(index, speed))
-            index += 1
-        except UnicodeDecodeError:
-            speed = gps_speed(gps)
-            speed = conv(speed)
-            speed = fault_margin(speed)
-            print("{}: {} km/h".format(index, speed))
-            index += 1
-except KeyboardInterrupt:       # ctrl+c
-    end_time = time.localtime()[3:6]
-    print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
-    elapsed_time = elapsed_time(start_time, end_time)
-    print("Elapsed time: {}:{}:{}".format(elapsed_time[0], elapsed_time[1], elapsed_time[2]))
-
+with open('speed.csv', 'w', newline='') as file:
+    file_writer = csv.writer(file)
+    try:
+        start_time = time.localtime()[3:6]
+        print("Time at start: {}:{}:{}".format(start_time[0], start_time[1], start_time[2]))
+        ile_writer.writerow(start_time)
+        while status:
+            try:
+                speed = gps_speed(gps)
+                speed = conv(speed)
+                speed = fault_margin(speed)
+                print("{}: {} km/h".format(index, speed))
+                file_writer.writerow([index, float(speed)])
+                index += 1
+            except UnicodeDecodeError:
+                speed = gps_speed(gps)
+                speed = conv(speed)
+                speed = fault_margin(speed)
+                print("{}: {} km/h".format(index, speed))
+                file_writer.writerow([index, float(speed)])
+                index += 1
+    except KeyboardInterrupt:       # ctrl+c
+        end_time = time.localtime()[3:6]
+        print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
+        elapsed_time = elapsed_time(start_time, end_time)
+        print("Elapsed time: {}:{}:{}".format(elapsed_time[0], elapsed_time[1], elapsed_time[2]))
+        file_writer.writerow(end_time)
     
