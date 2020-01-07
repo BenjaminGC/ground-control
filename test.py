@@ -48,6 +48,7 @@ try:
 except KeyboardInterrupt:       # ctrl+c
     end_time = time.localtime()[3:6]
     print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
-    print("Elapsed time: {}".format(elapsed_time(start_time, end_time)))
+    elapsed_time = elapsed_time(start_time, end_time)
+    print("Elapsed time: {}:{}:{}".format(elapsed_time[0], elapsed_time[1], elapsed_time[2]))
 
     
