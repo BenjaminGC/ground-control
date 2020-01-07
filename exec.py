@@ -9,7 +9,7 @@ try:
         output = GPIO.input(13)
         if output != 0:
             print('Hello World')
-         else:
+        else:
             pass
 except KeyboardInterrupt:
     GPIO.cleanup()
