@@ -22,6 +22,8 @@ with open('speed.csv', 'w', newline='') as file:
     file_writer = csv.writer(file)
     for i in range(0, 25):
         try:
-            file_writer.writerow(gps_speed(gps))
+            print(gps_speed(gps))
+            # file_writer.writerow(gps_speed(gps))
         except UnicodeDecodeError:
-            file_writer.writerow(gps_speed(gps))
+            print(gps_speed(gps))
+            # file_writer.writerow(gps_speed(gps))
