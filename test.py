@@ -26,8 +26,8 @@ def conv(v):
 
 
 def elapsed_time(tuple_start, tuple_end):
-    list_start = tuple_start.split(":")
-    list_end = tuple_end.split(":")
+    list_start = list(tuple_start)
+    list_end = list(tuple_end)
     return (list_end - list_start)
 
 
