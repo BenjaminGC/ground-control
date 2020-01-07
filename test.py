@@ -46,7 +46,7 @@ with open('speed.csv', 'w', newline='') as file:
     try:
         start_time = time.localtime()[3:6]
         print("Time at start: {}:{}:{}".format(start_time[0], start_time[1], start_time[2]))
-        file_writer.writerow(start_time)
+        file_writer.writerow(["Start time", start_time])
         while status:
             try:
                 speed = gps_speed(gps)
@@ -67,5 +67,5 @@ with open('speed.csv', 'w', newline='') as file:
         print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
         elapsed_time = elapsed_time(start_time, end_time)
         print("Elapsed time: {}:{}:{}".format(elapsed_time[0], elapsed_time[1], elapsed_time[2]))
-        file_writer.writerow(end_time)
+        file_writer.writerow(["End time", end_time])
     
