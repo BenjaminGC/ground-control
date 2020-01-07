@@ -1,29 +1,33 @@
 import RPi.GPIO as GPIO
 
-status = False
-
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-def button_callback(status):
-    print("Status: {}".format(status))
-    if status == False:
-        status = True
-    elif status == True:
-        status = False
-    print("Status changed to: {}".format(status))
-    return status
-    
+class State:
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    def __init__(self, status):
+        self.status = status
+
+    def update(self):
+        if not self.status:
+            self.status = True
+            print("Running Program")
+        elif self.status:
+            self.status = False
+            print("Stopping Program")
 
 
-GPIO.add_event_detect(13,GPIO.RISING,callback=exec)
+def update_status():
+    running.update()
+    print("Changed status")
+
+
+running = State(False)
+GPIO.add_event_detect(13, GPIO.RISING, callback=update_status)
 
 message = input("Press enter to quit\n\n")
+
 
 GPIO.cleanup()
