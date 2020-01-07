@@ -6,9 +6,9 @@ GPIO.setup(13, GPIO.IN)
 try:
     while True:
         input_value = GPIO.input(13)
-        if input_value == False:
+        if input_value == True:
             print('Hello World')
-            while input_value == False:
+            while input_value == True:
                 input_value = GPIO.input(13)
         else:
             pass
