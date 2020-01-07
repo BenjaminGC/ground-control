@@ -37,7 +37,7 @@ with open('speed.csv', 'w', newline='') as file:
             print("Speed: {} km/h".format(speed))
             file_writer.writerow([float(speed)])
             GPIO.output(11, False)
-            time.sleep(1)
+            time.sleep(0.25)
         except UnicodeDecodeError:
             GPIO.output(11, True)
             speed = gps_speed(gps)
@@ -46,5 +46,5 @@ with open('speed.csv', 'w', newline='') as file:
             print("Speed: {} km/h".format(speed))
             file_writer.writerow([float(speed)])
             GPIO.output(11, False)
-            time.sleep(1)
+            time.sleep(0.25)
 GPIO.cleanup()
