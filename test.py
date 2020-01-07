@@ -12,19 +12,11 @@ def gps_speed(data):
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
         speed = data_line[7]
-        if speed is None:
-            speed = DEFAULT_VALUE
-        elif speed <= 1.5:
-            speed = 0.0
-        else:
-            pass
-        return speed*conv_f
+        print(speed)
 
         
 while status:
     try:
-        speed = gps_speed(gps)
-        print("Speed: {} km/h".format(speed))
+        gps_speed(gps)
     except UnicodeDecodeError:
-        speed = gps_speed(gps)
-        print("Speed: {} km/h".format(speed))
+        gps_speed(gps)
