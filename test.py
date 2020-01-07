@@ -28,8 +28,10 @@ def conv(v):
 def elapsed_time(tuple_start, tuple_end):
     list_start = list(tuple_start)
     list_end = list(tuple_end)
-    return (list_end - list_start)
-
+    list_elapsed_time = [int(list_end[0]-list_start[0]),
+                         int(list_end[1]-list_start[1]),
+                         int(list_end[2]-list_start[2])]
+    return list_elapsed_time
 
 try:
     start_time = time.localtime()[3:6]
