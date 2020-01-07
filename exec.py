@@ -25,7 +25,7 @@ def update_status():
 
 
 running = State(False)
-GPIO.add_event_detect(13, GPIO.RISING, callback=update_status)
+GPIO.add_event_detect(13, GPIO.RISING, callback=update_status())
 
 message = input("Press enter to quit\n\n")
 
