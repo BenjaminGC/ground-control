@@ -1,5 +1,6 @@
 import serial
 import csv
+import RPi.GPIO as GPIO
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
@@ -19,7 +20,11 @@ def gps_speed(data):
         return speed
 
 
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(7, GPIO.OUT)
+
 with open('speed.csv', 'w', newline='') as file:
+    GPIO.output(7, True)
     file_writer = csv.writer(file)
     for i in range(0, 25):
         try:
@@ -34,3 +39,4 @@ with open('speed.csv', 'w', newline='') as file:
                 speed = DEFAULT_VALUE
             print("Speed: {} km/h".format(speed))
             file_writer.writerow([float(speed)])
+GPIO.cleanup()
