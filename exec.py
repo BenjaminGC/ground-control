@@ -18,11 +18,16 @@ class State:
             self.status = False
 
 
-message = input("Press enter to quit\n\n")
+def run():
+    running.status = running.update
+
 
 running = State(False)
 print("To start program, press button...")
-GPIO.add_event_detect(13, GPIO.RISING, callback=running.update())
-print("Program terminated")
+GPIO.add_event_detect(13, GPIO.RISING, callback=run)
+if running.status:
+    print("Program terminated")
+else:
+    pass
 
 GPIO.cleanup()
