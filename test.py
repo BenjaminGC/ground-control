@@ -20,8 +20,8 @@ def gps_speed(data, index):
         
 while status:
     try:
-        gps_speed(gps)
+        gps_speed(gps, index)
         index += 1
     except UnicodeDecodeError:
-        gps_speed(gps)
+        gps_speed(gps, index)
         index += 1
