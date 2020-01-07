@@ -15,7 +15,6 @@ def gps_speed(data, index):
     if data_line[0] == '$GPRMC':
         speed = data_line[7]
         print("{}:  {} km/h".format(index, speed))
-        time.sleep(1)
 
         
 while status:
