@@ -14,12 +14,11 @@ def gps_speed(data):
         speed = data_line[7]
         if speed is None:
             speed = DEFAULT_VALUE
-        speed = speed*conv_f
         elif speed <= 1.5:
             speed = 0.0
         else:
             pass
-        return speed
+        return speed*conv_f
 
         
 while status:
