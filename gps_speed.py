@@ -22,21 +22,26 @@ def gps_speed(data):
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(7, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
 
 with open('speed.csv', 'w', newline='') as file:
     GPIO.output(7, True)
     file_writer = csv.writer(file)
     for i in range(0, 25):
         try:
+            GPIO.output(11, True)
             speed = gps_speed(gps)
             if speed is None:
                 speed = DEFAULT_VALUE
             print("Speed: {} km/h".format(speed))
             file_writer.writerow([float(speed)])
+            GPIO.output(11, False)
         except UnicodeDecodeError:
+            GPIO.output(11, True)
             speed = gps_speed(gps)
             if speed is None:
                 speed = DEFAULT_VALUE
             print("Speed: {} km/h".format(speed))
             file_writer.writerow([float(speed)])
+            GPIO.output(11, False)
 GPIO.cleanup()
