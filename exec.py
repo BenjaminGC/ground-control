@@ -6,7 +6,11 @@ GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 try:
     while True:
-        print(GPIO.input(13))
+        output = GPIO.input(13)
+        if output != 0:
+            print('Hello World')
+         else:
+            pass
 except KeyboardInterrupt:
     GPIO.cleanup()
 
