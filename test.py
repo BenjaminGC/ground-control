@@ -15,7 +15,7 @@ def gps_speed(data):
             speed = 0
         else:
             pass
-        return speed
+        return speed*1
 
 
 with open('speed.csv', 'w', newline='') as file:
