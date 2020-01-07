@@ -15,8 +15,17 @@ def gps_speed(data):
         if speed is None:
             speed = DEFAULT_VALUE
         speed = speed*conv_f
-        if speed <= 1.5:
+        elif speed <= 1.5:
             speed = 0.0
         else:
             pass
+        return speed
+
+        
+while status:
+    try:
+        speed = gps_speed(gps)
+        print("Speed: {} km/h".format(speed))
+    except UnicodeDecodeError:
+        speed = gps_speed(gps)
         print("Speed: {} km/h".format(speed))
