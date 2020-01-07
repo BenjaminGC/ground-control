@@ -4,14 +4,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(13, GPIO.IN)
 
 try:
-    while True:
-        input_value = GPIO.input(13)
-        if input_value == True:
-            print('Hello World')
-            while input_value == True:
-                input_value = GPIO.input(13)
-        else:
-            pass
+    while True: # Run forever
+        if GPIO.input(13) == GPIO.HIGH:
+        print("Button was pushed!")
 except KeyboardInterrupt:
     GPIO.cleanup()
 
