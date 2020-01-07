@@ -25,6 +25,12 @@ def conv(v):
     return float(v)*conv_f
 
 
+def elapsed_time(tuple_start, tuple_end):
+    list_start = tuple_start.split(":")
+    list_end = tuple_end.split(":")
+    return (list_end - list_start)
+
+
 try:
     start_time = time.localtime()[3:6]
     print("Time at start: {}:{}:{}".format(start_time[0], start_time[1], start_time[2]))
@@ -39,8 +45,7 @@ try:
             print("{}: {} km/h".format(index, speed))
 except KeyboardInterrupt:       # ctrl+c
     end_time = time.localtime()[3:6]
-    elapsed_time = end_time - start_time
     print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
-    print("Elapsed time: {}".format(elapsed_time))
+    print("Elapsed time: {}".format(elapsed_time(start_time, end_time))
 
     
