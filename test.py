@@ -14,6 +14,7 @@ def gps_speed(data):
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
         speed = data_line[7]
+        time.sleep(1)
         return speed
 
         
