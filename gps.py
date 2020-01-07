@@ -1,7 +1,17 @@
 import serial
+import csv
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(7, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
+conv_f = 1.852
+DEFAULT_VALUE = 0.0
+
 
 def degrees(pos):
     split_pos = pos.split('.')
@@ -33,12 +43,13 @@ def gps_loc(data):
                                                                                                   , lon
                                                                                                   , altitude))
         print('Satellites in use: {}'.format(satellites_in_use))
-        print('----------------------------------------------------------------------------------------------------------------------------------------------------------------')
+        print('-----------------------------------------------------------------------------------------------'
+              '-----------------------------------------------------------------')
     else:
         pass
 
 
-def gps_speed(data):
+def speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
@@ -50,23 +61,39 @@ def gps_speed(data):
         if speed is None:
             speed = DEFAULT_VALUE
         print("Speed: {} km/h".format(speed))
-     
+        return speed
+
+
+def gps_speed():
+    with open('speed.csv', 'w', newline='') as file:
+        GPIO.output(7, True)
+        file_writer = csv.writer(file)
+        for i in range(0, 25):
+            try:
+                GPIO.output(11, True)
+                speed = speed(gps)
+                file_writer.writerow([float(speed)])
+                GPIO.output(11, False)
+                time.sleep(1)
+            except UnicodeDecodeError:
+                GPIO.output(11, True)
+                speed = speed(gps)
+                file_writer.writerow([float(speed)])
+                GPIO.output(11, False)
+                time.sleep(1)
+    GPIO.cleanup()
 
 
 answer = str(input("Location/Speed? "))
         
 while status:
-    try:
-        if answer == 'Location':
+    if answer == 'Speed':
+        gps_speed()
+    if answer == 'Location':
+        try:
             gps_loc(gps)
-        if answer == 'Speed':
-            gps_speed(gps)
-        else:
-            pass
-    except UnicodeDecodeError:
-        if answer == 'Location':
+        except UnicodeDecodeError:
             gps_loc(gps)
-        if answer == 'Speed':
-            gps_speed(gps)
-        else:
-            pass
+    else:
+        print('No option chosen')
+        pass
