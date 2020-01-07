@@ -33,6 +33,7 @@ def gps_loc(data):
                                                                                                   , lon
                                                                                                   , altitude))
         print('Satellites in use: {}'.format(satellites_in_use))
+        print('----------------------------------------------------------------------------------------------------------------------------------------------------------------')
     else:
         pass
 
@@ -40,12 +41,16 @@ def gps_loc(data):
 def gps_speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
-    if data_line[0] == '$GPVTG':
-        speed = str(data_line[7].replace('.', ',') + '\1km/h')
-        print('Speed: {}'.format(speed))
-        print('\n')
-    else:
-        pass
+    if data_line[0] == '$GPRMC':
+        speed = float(data_line[7])*conv_f
+        if speed <= 1.5:
+            speed = 0.0
+        else:
+            pass
+        if speed is None:
+            speed = DEFAULT_VALUE
+        print("Speed: {} km/h".format(speed))
+     
 
 
 answer = str(input("Location/Speed? "))
