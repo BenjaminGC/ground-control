@@ -23,7 +23,8 @@ def conv(v):
     else:
         pass
     return v*conv_f
-        
+
+
 try:
     start_time = time.localtime()[3:6]
     print("Time at start: {}:{}:{}".format(start_time[0], start_time[1], start_time[2]))
@@ -39,3 +40,5 @@ try:
 except KeyboardInterrupt:       # ctrl+c
     end_time = time.localtime()[3:6]
     print("Time at end: {}:{}:{}".format(end_time[0], end_time[1], end_time[2]))
+
+    
