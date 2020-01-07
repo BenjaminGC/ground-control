@@ -13,23 +13,10 @@ def gps_speed(data):
     if data_line[0] == '$GPRMC':
         speed = data_line[7]
         if speed is None:
-                speed = DEFAULT_VALUE
-        speed = float(speed)*conv_f
+            speed = DEFAULT_VALUE
+        speed = speed*conv_f
         if speed <= 1.5:
             speed = 0.0
         else:
             pass
-        return speed
-
-
-with open('speed.csv', 'w', newline='') as file:
-    file_writer = csv.writer(file)
-    while status:
-        try:
-            speed = gps_speed(gps)
-            print("Speed: {} km/h".format(speed))
-            file_writer.writerow([float(speed)])
-        except UnicodeDecodeError:
-            speed = gps_speed(gps)
-            print("Speed: {} km/h".format(speed))
-            file_writer.writerow([float(speed)])
+        print("Speed: {} km/h".format(speed))
