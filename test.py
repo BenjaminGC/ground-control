@@ -27,10 +27,10 @@ with open('speed.csv', 'w', newline='') as file:
             if speed is None:
                 speed = DEFAULT_VALUE
             print("Speed: {} km/h".format(speed))
-            file_writer.writerow(speed)
+            file_writer.writerow(str(speed))
         except UnicodeDecodeError:
             speed = gps_speed(gps)
             if speed is None:
                 speed = DEFAULT_VALUE
             print("Speed: {} km/h".format(speed))
-            file_writer.writerow(speed)
+            file_writer.writerow(str(speed))
