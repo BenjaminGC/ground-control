@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(13, GPIO.IN)
 
 try:
