@@ -52,7 +52,7 @@ def gps_speed():
                      "minute: {}".format(time[4]),
                      "second: {}".format(time[5])
                      ]
-        ile_writer.writerow(time_list_1)
+        file_writer.writerow(time_list_1)
         while status:
             try:
                 button_inp = not bool(GPIO.input(BUTTON))
@@ -85,7 +85,7 @@ def gps_speed():
                                  "minute: {}".format(time[4]),
                                  "second: {}".format(time[5])
                                  ]
-                    ile_writer.writerow(time_list)
+                    file_writer.writerow(time_list)
                     time.sleep(1)
 
 
