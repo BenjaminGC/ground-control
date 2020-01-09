@@ -11,7 +11,7 @@ GPIO.setup(LED, GPIO.OUT)  # led
 
 try:
     while True:
-        button_input = GPIO.input(BUTTON)
+        button_input = not GPIO.input(BUTTON)
         GPIO.output(LED, button_input)
         print(button_input)
         sp.call('clear', shell=True)       
