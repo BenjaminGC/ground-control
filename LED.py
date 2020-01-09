@@ -14,7 +14,7 @@ try:
         button_input = GPIO.input(BUTTON)
         GPIO.output(LED, button_input)
         print(button_input)
-        sp.shell('clear', shell=True)       
+        sp.call('clear', shell=True)       
 except KeyboardInterrupt:
     print("ENDING")
     GPIO.cleanup()
