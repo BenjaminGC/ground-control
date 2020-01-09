@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-LED = 11
+LED = 15
 BUTTON = 13
 
 GPIO.setwarnings(True)
