@@ -26,6 +26,7 @@ def speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
+        GPIO.output(LED_GREEN, True)
         v = float(data_line[7])*conv_f
         if v is None or v < 1.5:
             v = DEFAULT_VALUE
@@ -41,7 +42,6 @@ def gps_speed():
         while status:
             try:
                 button_inp = not bool(GPIO.input(BUTTON))
-                GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
@@ -54,7 +54,6 @@ def gps_speed():
                     time.sleep(1)
             except UnicodeDecodeError:
                 button_inp = not bool(GPIO.input(BUTTON))
-                GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
