@@ -31,6 +31,7 @@ def speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
+        GPIO.output(LED_GREEN, True)
         v = float(data_line[7])*conv_f
         if v is None or v < 1.5:
             v = DEFAULT_VALUE
@@ -49,7 +50,6 @@ def gps_speed():
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
-                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
@@ -62,7 +62,6 @@ def gps_speed():
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
-                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
