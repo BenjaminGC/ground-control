@@ -1,4 +1,6 @@
 import serial
+import subprocess as sp
+import time
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
@@ -30,8 +32,15 @@ def gps_loc(gps):
             print("lon: {}".format(lon))
 
 
+def clear():
+    time.sleep(1)
+    sp.call('clear', shell=True)
+    
+
 while status:
     try:
         gps_loc(gps)
+        clear()
     except UnicodeDecodeError:
         gps_loc(gps)
+        clear()
