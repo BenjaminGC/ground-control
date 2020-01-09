@@ -28,8 +28,6 @@ def speed(data):
         v = float(data_line[7])*conv_f
         if v is None or v < 1.5:
             v = DEFAULT_VALUE
-        else:
-            pass
         print("Speed: {} km/h".format(v))
         return v
 
@@ -43,7 +41,9 @@ def gps_speed():
                 button_inp = not bool(GPIO.input(BUTTON))
                 GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
-                file_writer.writerow([float(velocity)])
+                if velocity is None or velocity < 1.5:
+                    velocity = 0.0
+                file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
                     status = False
@@ -54,7 +54,9 @@ def gps_speed():
                 button_inp = not bool(GPIO.input(BUTTON))
                 GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
-                file_writer.writerow([float(velocity)])
+                if velocity is None or velocity < 1.5:
+                    velocity = 0.0
+                file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
                     status = False
