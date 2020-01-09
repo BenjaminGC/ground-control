@@ -6,16 +6,20 @@ import subprocess as sp
 
 LED_RED = 13    # GPIO27
 LED_GREEN = 15  # GPIO22
+LED_BLUE = 16   # GPIO23
 BUTTON = 11     # GPIO17
-status = False
-gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
-conv_f = 1.852
-DEFAULT_VALUE = 0.0
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # button
 GPIO.setup(LED_RED, GPIO.OUT)                           # Red led
 GPIO.setup(LED_GREEN, GPIO.OUT)                         # Green led
+
+GPIO.output(LED_BLUE, True)
+
+status = False
+gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
+conv_f = 1.852
+DEFAULT_VALUE = 0.0
 
 GPIO.output([LED_GREEN, LED_RED], False)
 sp.call('clear', shell=True)
@@ -26,7 +30,6 @@ def speed(data):
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
-        GPIO.output(LED_GREEN, True)
         v = float(data_line[7])*conv_f
         if v is None or v < 1.5:
             v = DEFAULT_VALUE
@@ -45,6 +48,7 @@ def gps_speed():
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
+                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
@@ -57,6 +61,7 @@ def gps_speed():
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
+                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
