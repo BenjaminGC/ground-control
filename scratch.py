@@ -18,8 +18,7 @@ def text(number):
 
 
 def adder():
-    global i
-    while i < 10:
+    while status:
         value = text(3)
         i += 1
         print("Outcome is: {}".format(value))
