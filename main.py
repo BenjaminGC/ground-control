@@ -43,7 +43,7 @@ def speed(data):
 
 def gps_speed():
     global status, gps, time
-    with open('speed2.csv', 'w', newline='') as file:
+    with open('speed3.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
         time = localtime()
         time_list_1 = ["year: {}".format(time[0]),
