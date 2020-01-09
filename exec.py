@@ -29,6 +29,7 @@ try:
             print("LED OFF")
     print(status)
     GPIO.output(LED, status)
+    GPIO.cleanup()
 
 except KeyboardInterrupt:
     GPIO.cleanup()
