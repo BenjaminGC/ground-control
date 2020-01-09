@@ -1,10 +1,9 @@
 import serial
-import time
 import subprocess as sp
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
-index = 0.0
+index = int(1)      # in seconds
 
 
 def gps_loc(gps):
@@ -29,11 +28,10 @@ def gps_loc(gps):
             long_deg = int(long_gps / 100)
             long_min = long_gps - long_deg * 100
             lon = long_deg + (long_min / 60)
-
+            
             sp.call('clear', shell=True)
             print("{}: LAT= {}, LON= {}".format(index, lat, lon))
-            time.sleep(0.1)
-            index += 0.1
+            index += int(1)
 
 
 while status:
