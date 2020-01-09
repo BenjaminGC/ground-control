@@ -17,7 +17,7 @@ GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # button
 GPIO.setup(LED_RED, GPIO.OUT)                           # Red led
 GPIO.setup(LED_GREEN, GPIO.OUT)                         # Green led
 
-sp.call('clear', shell=True)
+sp.shell('clear', shell=True)
 
 
 def speed(data):
@@ -36,17 +36,18 @@ def speed(data):
 
 
 def gps_speed():
-    global status
     with open('speed.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
         while status:
             try:
+                global gps, status
                 GPIO.output(LED_GREEN, True)
                 speed = speed(gps)
                 file_writer.writerow([float(speed)])
                 GPIO.output(LED_GREEN, False)
                 time.sleep(1)
             except UnicodeDecodeError:
+                global gps, status
                 GPIO.output(LED_GREEN, True)
                 speed = speed(gps)
                 file_writer.writerow([float(speed)])
