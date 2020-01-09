@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 LED = 13        # GPIO27
 BUTTON = 11     # GPIO17
@@ -17,6 +18,7 @@ try:
             status = True
     GPIO.output(LED, status)
     print(status)
+    time.sleep(2)
     GPIO.cleanup()
 except KeyboardInterrupt:
     GPIO.cleanup()
