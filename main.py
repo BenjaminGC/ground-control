@@ -1,3 +1,6 @@
+# to start at boot up: change config file @ /etc/profile
+
+
 import RPi.GPIO as GPIO
 import time
 import serial
