@@ -22,6 +22,7 @@ sp.call('clear', shell=True)
 
 
 def speed(data):
+    global DEFAULT_VALUE
     line = str(data.readline(), 'ASCII')
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
@@ -37,6 +38,7 @@ def speed(data):
 
 
 def gps_speed():
+    global gps
     with open('speed.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
         while status:
