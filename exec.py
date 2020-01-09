@@ -27,6 +27,7 @@ try:
         if button_input and status:
             status = False
             print("LED OFF")
+            time.sleep(1)
     print(status)
     GPIO.output(LED, status)
     GPIO.cleanup()
