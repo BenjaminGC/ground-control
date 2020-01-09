@@ -5,6 +5,7 @@ import subprocess as sp
 LED = 13        # GPIO27
 BUTTON = 11     # GPIO17
 status = False
+i = 0
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
@@ -17,10 +18,17 @@ def text(number):
 
 
 def adder():
+    global status
     while status:
+        global i
+        button_inp = not bool(GPIO.input(BUTTON))
         value = text(3)
+        i += 1
         print("Outcome is: {}".format(value))
-        time.sleep(1)
+        if button_inp and status:
+            status = False
+            print("LED OFF\n")
+            time.sleep(1)
 
 
 try:
@@ -32,15 +40,8 @@ try:
                 status = True
                 print("LED ON\n")
                 time.sleep(1)
-    adder()
     GPIO.output(LED, status)
-    while status:
-        button_input = not bool(GPIO.input(BUTTON))
-        if button_input and status:
-            status = False
-            print("LED OFF\n")
-            time.sleep(1)
-    print(status)
+    adder()
     GPIO.output(LED, status)
     GPIO.cleanup()
 
