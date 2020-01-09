@@ -37,11 +37,11 @@ def speed(data):
 
 
 def gps_speed():
+    global status
     with open('speed.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
         while status:
             try:
-                global status
                 button_inp = not bool(GPIO.input(BUTTON))
                 GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
@@ -53,7 +53,6 @@ def gps_speed():
                     print("Ending program")
                 time.sleep(1)
             except UnicodeDecodeError:
-                global status
                 button_inp = not bool(GPIO.input(BUTTON))
                 GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
