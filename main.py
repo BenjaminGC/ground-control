@@ -41,8 +41,8 @@ def gps_speed():
         while status:
             try:
                 button_inp = not bool(GPIO.input(BUTTON))
-                velocity = speed(gps)
                 GPIO.output(LED_GREEN, True)
+                velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
                 file_writer.writerow([velocity])
@@ -54,8 +54,8 @@ def gps_speed():
                     time.sleep(1)
             except UnicodeDecodeError:
                 button_inp = not bool(GPIO.input(BUTTON))
-                velocity = speed(gps)
                 GPIO.output(LED_GREEN, True)
+                velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
                 file_writer.writerow([velocity])
