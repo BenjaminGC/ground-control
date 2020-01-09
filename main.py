@@ -26,18 +26,16 @@ def speed(data):
     data_line = line.split(',')
     if data_line[0] == '$GPRMC':
         v = float(data_line[7])*conv_f
-        if v <= 1.5:
-            v = 0.0
+        if v is None or v < 1.5:
+            v = DEFAULT_VALUE
         else:
             pass
-        if v is None:
-            v = DEFAULT_VALUE
         print("Speed: {} km/h".format(v))
         return v
 
 
 def gps_speed():
-    global status
+    global status, gps
     with open('speed.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
         while status:
