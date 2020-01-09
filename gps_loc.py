@@ -27,12 +27,11 @@ def gps_loc(gps):
             long_deg = int(long_gps / 100)
             long_min = long_gps - long_deg * 100
             lon = long_deg + (long_min / 60)
-            
-            time.sleep(0.5)
-            print("LAT: {}\nLON: {}".foramt(lat, lon))
-            time.sleep(0.5)
+
             sp.call('clear', shell=True)
-            
+            print("LAT: {}\nLON: {}".format(lat, lon))
+            time.sleep(1)
+
 
 while status:
     try:
