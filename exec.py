@@ -19,6 +19,7 @@ try:
             if button_input and not status:
                 status = True
                 print("LED ON")
+                time.sleep(1)
     print(status)
     GPIO.output(LED, status)
     while status:
