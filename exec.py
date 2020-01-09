@@ -10,6 +10,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
 GPIO.setup(LED, GPIO.OUT)  # led
 
+sp.shell('clear', shell=True)
 
 try:
     if not status:
@@ -20,15 +21,14 @@ try:
                 status = True
                 print("LED ON")
                 time.sleep(1)
-    print(status)
     GPIO.output(LED, status)
     while status:
         button_input = not bool(GPIO.input(BUTTON))
         if button_input and status:
             status = False
+            sp.call('clear', shell=True)
             print("LED OFF")
             time.sleep(1)
-    print(status)
     GPIO.output(LED, status)
     GPIO.cleanup()
 
