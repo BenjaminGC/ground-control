@@ -3,6 +3,7 @@ import time
 import serial
 import csv
 import subprocess as sp
+from time import sleep
 
 LED_RED = 13    # GPIO27
 LED_GREEN = 15  # GPIO22
@@ -65,7 +66,7 @@ def gps_speed():
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
-                    time.sleep(1)
+                    sleep(1)
             except UnicodeDecodeError:
                 button_inp = not bool(GPIO.input(BUTTON))
                 velocity = speed(gps)
@@ -86,7 +87,7 @@ def gps_speed():
                                  "second: {}".format(time[5])
                                  ]
                     file_writer.writerow(time_list)
-                    time.sleep(1)
+                    sleep(1)
 
 
 try:
@@ -98,13 +99,13 @@ try:
                 status = True
                 sp.call('clear', shell=True)
                 print("Program starting up.")
-                time.sleep(0.5)
+                sleep(0.5)
                 sp.call('clear', shell=True)
                 print("Program starting up..")
-                time.sleep(0.5)
+                sleep(0.5)
                 sp.call('clear', shell=True)
                 print("Program starting up...")
-                time.sleep(0.5)
+                sleep(0.5)
                 sp.call('clear', shell=True)
     GPIO.output(LED_RED, status)
     gps_speed()
