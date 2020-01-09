@@ -13,6 +13,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # button
 GPIO.setup(LED_RED, GPIO.OUT)                           # Red led
 GPIO.setup(LED_GREEN, GPIO.OUT)                         # Green led
+GPIO.setup(LED_BLUE, GPIO.OUT)                          # Blue led
 
 GPIO.output(LED_BLUE, True)
 
