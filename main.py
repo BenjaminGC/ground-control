@@ -49,7 +49,7 @@ def gps_speed():
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
-                time.sleep(1)
+                    time.sleep(1)
             except UnicodeDecodeError:
                 button_inp = not bool(GPIO.input(BUTTON))
                 GPIO.output(LED_GREEN, True)
@@ -62,7 +62,7 @@ def gps_speed():
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
-                time.sleep(1)
+                    time.sleep(1)
 
 
 try:
