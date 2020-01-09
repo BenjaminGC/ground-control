@@ -19,17 +19,18 @@ try:
             if button_input and not status:
                 status = True
                 print("LED ON")
-    if status:
-        GPIO.output(LED, status)
-        while status:
-            button_input = not bool(GPIO.input(BUTTON))
-            if button_input and not status:
-                status = False
-                print("THE END")
+    GPIO.output(LED, status)
+    while status:
+        button_input = not bool(GPIO.input(BUTTON))
+        if button_input and not status:
+            status = False
+            print("THE END")
 
 except KeyboardInterrupt:
     GPIO.cleanup()
     print('FORCE QUIT')
+
+
 
 
 
