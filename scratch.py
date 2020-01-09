@@ -5,7 +5,6 @@ import subprocess as sp
 LED = 13        # GPIO27
 BUTTON = 11     # GPIO17
 status = False
-i = 0
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
@@ -20,7 +19,6 @@ def text(number):
 def adder():
     while status:
         value = text(3)
-        i += 1
         print("Outcome is: {}".format(value))
         time.sleep(1)
 
