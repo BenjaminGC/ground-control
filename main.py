@@ -3,7 +3,7 @@ import time
 import serial
 import csv
 import subprocess as sp
-from time import sleep
+from time import sleep, localtime
 
 LED_RED = 13    # GPIO27
 LED_GREEN = 15  # GPIO22
@@ -45,7 +45,7 @@ def gps_speed():
     global status, gps, time
     with open('speed.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
-        time = time.localtime()
+        time = localtime()
         time_list_1 = ["year: {}".format(time[0]),
                      "month: {}".format(time[1]),
                      "day: {}".format(time[2]),
@@ -66,7 +66,7 @@ def gps_speed():
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
-                    time = time.localtime()
+                    time = localtime()
                     time_list = ["year: {}".format(time[0]),
                                  "month: {}".format(time[1]),
                                  "day: {}".format(time[2]),
@@ -87,7 +87,7 @@ def gps_speed():
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
-                    time = time.localtime()
+                    time = localtime()
                     time_list = ["year: {}".format(time[0]),
                                  "month: {}".format(time[1]),
                                  "day: {}".format(time[2]),
