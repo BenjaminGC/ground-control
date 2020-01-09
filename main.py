@@ -41,9 +41,18 @@ def speed(data):
 
 
 def gps_speed():
-    global status, gps
+    global status, gps, time
     with open('speed.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
+        time = time.localtime()
+        time_list_1 = ["year: {}".format(time[0]),
+                     "month: {}".format(time[1]),
+                     "day: {}".format(time[2]),
+                     "hour: {}".format(time[3]),
+                     "minute: {}".format(time[4]),
+                     "second: {}".format(time[5])
+                     ]
+        ile_writer.writerow(time_list_1)
         while status:
             try:
                 button_inp = not bool(GPIO.input(BUTTON))
@@ -68,6 +77,15 @@ def gps_speed():
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
+                    time = time.localtime()
+                    time_list = ["year: {}".format(time[0]),
+                                 "month: {}".format(time[1]),
+                                 "day: {}".format(time[2]),
+                                 "hour: {}".format(time[3]),
+                                 "minute: {}".format(time[4]),
+                                 "second: {}".format(time[5])
+                                 ]
+                    ile_writer.writerow(time_list)
                     time.sleep(1)
 
 
