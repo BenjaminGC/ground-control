@@ -33,7 +33,7 @@ try:
     GPIO.cleanup()
 
 except KeyboardInterrupt:
-    GPIO.cleanup(all)
+    GPIO.cleanup()
     print('FORCE QUIT')
 
 
