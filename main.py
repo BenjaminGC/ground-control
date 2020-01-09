@@ -29,6 +29,7 @@ def speed(data):
         v = float(data_line[7])*conv_f
         if v is None or v < 1.5:
             v = DEFAULT_VALUE
+        sp.call('clear', shell=True)
         print("Speed: {} km/h".format(v))
         return v
 
