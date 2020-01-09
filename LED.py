@@ -4,7 +4,7 @@ import time
 LED = 11
 BUTTON = 13
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUTTON, GPIO.IN)  # button
 GPIO.setup(LED, GPIO.OUT)  # led
 GPIO.output(LED, False)     # LED begin state to false
