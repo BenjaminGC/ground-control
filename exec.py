@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
 GPIO.setup(LED, GPIO.OUT)  # led
 
-sp.shell('clear', shell=True)
+sp.call('clear', shell=True)
 
 try:
     if not status:
