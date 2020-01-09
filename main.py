@@ -19,6 +19,7 @@ GPIO.setup(LED_GREEN, GPIO.OUT)                         # Green led
 
 GPIO.output([LED_GREEN, LED_RED], False)
 sp.call('clear', shell=True)
+print("Press button to start...")
 
 
 def speed(data):
@@ -39,10 +40,10 @@ def gps_speed():
         while status:
             try:
                 button_inp = not bool(GPIO.input(BUTTON))
-                GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
+                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
@@ -52,10 +53,10 @@ def gps_speed():
                     time.sleep(1)
             except UnicodeDecodeError:
                 button_inp = not bool(GPIO.input(BUTTON))
-                GPIO.output(LED_GREEN, True)
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
+                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
@@ -72,8 +73,16 @@ try:
             button_input = not bool(GPIO.input(BUTTON))
             if button_input and not status:
                 status = True
-                print("Program running")
-                time.sleep(1)
+                sp.call('clear', shell=True)
+                print("Program starting up.")
+                time.sleep(0.5)
+                sp.call('clear', shell=True)
+                print("Program starting up..")
+                time.sleep(0.5)
+                sp.call('clear', shell=True)
+                print("Program starting up...")
+                time.sleep(0.5)
+                sp.call('clear', shell=True)
     GPIO.output(LED_RED, status)
     gps_speed()
 
