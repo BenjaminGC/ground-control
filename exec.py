@@ -21,6 +21,13 @@ try:
         GPIO.output(LED, status)
         print(status)
         sp.call('clear', shell=True)
+        while status:
+            button_input = not GPIO.input(BUTTON)
+            if button_input:
+                status = True
+        GPIO.output(LED, status)
+        print(status)
+        sp.call('clear', shell=True)
 except KeyboardInterrupt:
     GPIO.cleanup()
 
