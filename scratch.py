@@ -18,8 +18,8 @@ def text(number):
 
 
 def adder():
+    global i
     while i < 10:
-        global i
         value = text(3)
         i += 1
         print("Outcome is: {}".format(value))
@@ -49,3 +49,6 @@ try:
 except KeyboardInterrupt:
     GPIO.cleanup()
     print('FORCE QUIT')
+
+    
+# https://github.com/BenjaminGC/ground-control.git
