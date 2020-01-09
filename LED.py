@@ -28,4 +28,5 @@ try:
         while GPIO.input(BUTTON) == 0:
             time.sleep(0.2)
 except KeyboardInterrupt:
+    print("ENDING")
     GPIO.cleanup()
