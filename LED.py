@@ -11,7 +11,7 @@ GPIO.setup(LED, GPIO.OUT)  # led
 try:
     while True:
         GPIO.output(LED, GPIO.input(BUTTON))
-        time.sleep(1)
+        #time.sleep(1)
 except KeyboardInterrupt:
     print("ENDING")
     GPIO.cleanup()
