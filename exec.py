@@ -16,15 +16,10 @@ try:
         GPIO.output(LED, status)
         while not status:
             button_input = not GPIO.input(BUTTON)
-            if button_input:
+            if button_input and not status:
                 status = True
-        GPIO.output(LED, status)
-        print(status)
-        sp.call('clear', shell=True)
-        while status:
-            button_input = not GPIO.input(BUTTON)
-            if button_input:
-                status = True
+            elif button_input and status:
+                status = False
         GPIO.output(LED, status)
         print(status)
         sp.call('clear', shell=True)
