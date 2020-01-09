@@ -22,6 +22,7 @@ def adder():
         value = text(3)
         i += 1
         print("Outcome is: {}".format(value))
+        time.sleep(1)
 
 
 try:
