@@ -30,7 +30,7 @@ def gps_loc(gps):
 
             sp.call('clear', shell=True)
             print("LAT: {}\nLON: {}".format(lat, lon))
-            time.sleep(1)
+            time.sleep(0.1)
 
 
 while status:
