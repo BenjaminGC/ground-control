@@ -7,8 +7,8 @@ BUTTON = 13
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(LED, GPIO.OUT, False)
-
+GPIO.setup(LED, GPIO.OUT)
+GPIO.output(LED, False)
 
 def button_callback():
     global LED, BUTTON
