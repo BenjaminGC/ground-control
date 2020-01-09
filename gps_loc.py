@@ -33,7 +33,7 @@ def gps_loc(gps):
 
 
 def clear():
-    time.sleep(1)
+    time.sleep(0.1)
     sp.call('clear', shell=True)
     
 
