@@ -17,7 +17,7 @@ class Push:
         GPIO.output(LED, GPIO.HIGH)
 
 
-GPIO.add_event_detect(BUTTON, GPIO.RISING, callback=button_callback)
+GPIO.add_event_detect(BUTTON, GPIO.RISING, callback=Push.button_callback)
 
 message = input("Press enter to quit...\n\n")
 GPIO.cleanup()
