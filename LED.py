@@ -10,12 +10,12 @@ GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(LED, GPIO.OUT)
 
 
-def button_callback():
+def button_callback(None):
     global LED, BUTTON
     GPIO.output(LED, GPIO.HIGH)
 
 
-GPIO.add_event_detect(BUTTON, GPIO.RISING, callback=button_callback())
+GPIO.add_event_detect(BUTTON, GPIO.RISING, callback=button_callback)
 
 message = input("Press enter to quit...")
 GPIO.cleanup()
