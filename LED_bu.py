@@ -16,6 +16,7 @@ try:
             GPIO.output(LED, button_input)
             print("LED ON")
         else:
+            GPIO.output(LED, button_input)
             print("LED OFF")
         sp.call('clear', shell=True)
 except KeyboardInterrupt:
