@@ -42,9 +42,9 @@ def gps_speed():
             try:
                 button_inp = not bool(GPIO.input(BUTTON))
                 velocity = speed(gps)
+                GPIO.output(LED_GREEN, True)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
-                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
@@ -55,9 +55,9 @@ def gps_speed():
             except UnicodeDecodeError:
                 button_inp = not bool(GPIO.input(BUTTON))
                 velocity = speed(gps)
+                GPIO.output(LED_GREEN, True)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
-                GPIO.output(LED_GREEN, True)
                 file_writer.writerow([velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
