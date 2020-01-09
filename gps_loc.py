@@ -30,17 +30,13 @@ def gps_loc(gps):
 
             print("lat: {}".format(lat))
             print("lon: {}".format(lon))
-
-
-def clear():
-    time.sleep(0.1)
-    sp.call('clear', shell=True)
+            
+            time.sleep(1)
+            sp.call('clear', shell=True)
     
 
 while status:
     try:
         gps_loc(gps)
-        clear()
     except UnicodeDecodeError:
         gps_loc(gps)
-        clear()
