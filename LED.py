@@ -1,32 +1,18 @@
 import RPi.GPIO as GPIO
 import time
 
-LED = 15
-BUTTON = 13
+LED = 13        # GPIO27
+BUTTON = 11     # GPIO17
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(BUTTON, GPIO.IN)  # button
+GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
 GPIO.setup(LED, GPIO.OUT)  # led
 GPIO.output(LED, False)     # LED begin state to false
 
-
 try:
     while True:
-        # Turn LED off
-        print("LED off")
-        GPIO.output(LED, GPIO.LOW)
-    
-        # waiting for button press
-        while GPIO.input(BUTTON) == 1:
-            time.sleep(0.2)
-    
-            # Turn LED on
-        print("LED on")
-        GPIO.output(LED, GPIO.HIGH)
-    
-        # waiting for button release
-        while GPIO.input(BUTTON) == 0:
-            time.sleep(0.2)
+        GPIO.output(LED, GPIO.input(BUTTON))
+        time.sleep(1)
 except KeyboardInterrupt:
     print("ENDING")
     GPIO.cleanup()
