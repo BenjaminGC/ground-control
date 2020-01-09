@@ -1,4 +1,5 @@
-# to start at boot up: change config file @ /etc/profile
+# to start at boot up: change config file @ /etc/profile 'sudo nano /etc/profile'
+# add "sudo python3 Desktop/Github/ground-control/main.py" at the end
 
 
 import RPi.GPIO as GPIO
