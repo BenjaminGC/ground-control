@@ -52,7 +52,8 @@ def gps_speed():
                 GPIO.output(LED_GREEN, False)
                 time.sleep(1)
 
-
+                
+GPIO.output(LED_GREEN, False)                       
 try:
     if not status:
         GPIO.output(LED_RED, status)
