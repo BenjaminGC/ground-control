@@ -1,27 +1,20 @@
 import RPi.GPIO as GPIO
 
-GPIO.setwarnings(False)
+LED = 13        # GPIO27
+BUTTON = 11     # GPIO17
+status = False
+
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
+GPIO.setup(LED, GPIO.OUT)  # led
 
 
-class State:
-
-    def __init__(self, status):
-        self.status = status
-
-    def update(self):
-        if not self.status:
-            self.status = True
-
-        elif self.status:
-            self.status = False
-
-            
-running = State(False)
-print(running.status)
-GPIO.add_event_detect(13, GPIO.RISING, callback=running.update)
-message = input("Press enter to quit")
-print(running.status)
-
-GPIO.cleanup()
+try:
+    print(status)
+    button_input = not GPIO.input(BUTTON)
+    if button_input:
+        status = True
+    print(status)
+    message = input("Press enter to quit...\n\n")
+except KeyboardInterrupt:
+    GPIO.cleanup()
