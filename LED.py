@@ -10,7 +10,7 @@ GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(LED, GPIO.OUT)
 
 
-def button_callback(None):
+def button_callback:
     global LED, BUTTON
     GPIO.output(LED, GPIO.HIGH)
 
