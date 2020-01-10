@@ -50,13 +50,7 @@ def gps_speed():
     with open('speed3.csv', 'w', newline='') as file:
         file_writer = csv.writer(file)
         time = localtime()
-        time_list_1 = ["year: {}".format(time[0]),
-                     "month: {}".format(time[1]),
-                     "day: {}".format(time[2]),
-                     "hour: {}".format(time[3]),
-                     "minute: {}".format(time[4]),
-                     "second: {}".format(time[5])
-                     ]
+        time_list_1 = time[0], time[1], time[2], time[3], time[4], time[5]
         file_writer.writerow(time_list_1)
         while status:
             try:
@@ -64,20 +58,14 @@ def gps_speed():
                 velocity = speed(gps)
                 if velocity is None or velocity < 1.5:
                     velocity = 0.0
-                file_writer.writerow([velocity])
+                file_writer.writerow(f[velocity])
                 GPIO.output(LED_GREEN, False)
                 if button_inp and status:
                     status = False
                     sp.call('clear', shell=True)
                     print("Ending program")
                     time = localtime()
-                    time_list = ["year: {}".format(time[0]),
-                                 "month: {}".format(time[1]),
-                                 "day: {}".format(time[2]),
-                                 "hour: {}".format(time[3]),
-                                 "minute: {}".format(time[4]),
-                                 "second: {}".format(time[5])
-                                 ]
+                    time_list = time[0], time[1], time[2], time[3], time[4], time[5]
                     file_writer.writerow(time_list)
                     sleep(1)
             except UnicodeDecodeError:
@@ -92,13 +80,7 @@ def gps_speed():
                     sp.call('clear', shell=True)
                     print("Ending program")
                     time = localtime()
-                    time_list = ["year: {}".format(time[0]),
-                                 "month: {}".format(time[1]),
-                                 "day: {}".format(time[2]),
-                                 "hour: {}".format(time[3]),
-                                 "minute: {}".format(time[4]),
-                                 "second: {}".format(time[5])
-                                 ]
+                    time_list = time[0], time[1], time[2], time[3], time[4], time[5]
                     file_writer.writerow(time_list)
                     sleep(1)
 
