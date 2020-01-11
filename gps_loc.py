@@ -1,9 +1,15 @@
+# Need an accuracy of this: 51.17921 N, 3.07762 E, rounding off at 5 decimals after the ','
+# Create 2D numpy matrix with coordinates as x and y indices, if these coordinates are received, the x and y
+# coordinates in the 2D numpy array will get a value of 1 (0 or 1 available)
+# ((x, y), True/False) stored in every a, b of 2D np array, with x and y real coordinates
+
+
 import serial
 import subprocess as sp
 
-gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
+gps = serial.Serial("/dev/tty.USB0", baudrate=4800, timeout=5)
 status = True
-index = int(1)      # in seconds
+index = int(1)  # in seconds
 
 
 def gps_loc(gps):
@@ -28,7 +34,10 @@ def gps_loc(gps):
             long_deg = int(long_gps / 100)
             long_min = long_gps - long_deg * 100
             lon = long_deg + (long_min / 60)
-            
+
+            lat = round(lat, 5)
+            lon = round(lon, 5)     # Accurate enough
+
             sp.call('clear', shell=True)
             print("{}: LAT= {}, LON= {}".format(index, lat, lon))
             index += int(1)
