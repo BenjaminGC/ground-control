@@ -7,7 +7,7 @@
 import serial
 import subprocess as sp
 
-gps = serial.Serial("/dev/tty.USB0", baudrate=4800, timeout=5)
+gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 status = True
 index = int(1)  # in seconds
 
