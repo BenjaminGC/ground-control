@@ -6,4 +6,4 @@ with open(file, 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
 
     for line in csv_reader:
-        print(line)
+        print(line[1:-1])
