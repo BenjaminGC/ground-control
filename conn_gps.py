@@ -32,7 +32,7 @@ def sat_(data):
 
 while True:
     try:
-        filtered_data = sat_data(data_1)
+        filtered_data = sat_data(gps)
         sat_(filtered_data)
         time.sleep(1)
         sp.call('clear', shell=True)
