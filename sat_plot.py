@@ -1,8 +1,8 @@
 import time
 import serial
-import matplotlib
 import numpy as np
 import subprocess as sp
+import matplotlib.pyplot as plt
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 satellites = {}
@@ -42,24 +42,29 @@ def color_list(e):
 
 
 def plot(inp):
-    global index
-    dict_values = np.array(list(inp.values()), dtype=int)
-    r = dict_values[:, 1]
-    theta = np.deg2rad(dict_values[:, 2])
-    snr = np.round(dict_values[:, 3] / np.amax(dict_values) * 10, 2)
-    color = color_list(snr)
+    try:
+        global index
+        dict_values = np.array(list(inp.values()), dtype=int)
+        sats = dict_values[:, 0]
+        r = dict_values[:, 1]
+        theta = np.deg2rad(dict_values[:, 2])
+        snr = np.round(dict_values[:, 3] / np.amax(dict_values) * 10, 2)
+        color = color_list(snr)
 
-    fig = plt.figure()
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='polar')
+        ax.scatter(theta, r, c=color)
+        for i, txt in enumerate(sats):
+            ax.annotate(txt, (theta[i], r[i]))
+        ax.set_xticks(np.arange(0, 2.0 * np.pi, np.pi / 18.0))
+        ax.set_ylim(90, 0)
+        ax.set_yticks(np.arange(0, 90, 10))
+        ax.axes.yaxis.set_ticklabels([])
 
-    ax = fig.add_subplot(111, projection='polar')
-    ax.scatter(theta, r, c=color)
-    ax.set_xticks(np.arange(0, 2.0 * np.pi, np.pi / 18.0))
-    ax.set_ylim(90, 0)
-    ax.set_yticks(np.arange(0, 90, 10))
-    ax.axes.yaxis.set_ticklabels([])
-
-    plt.savefig("sats_{}.png".format(index), bbox_inches='tight')
-    index += 1
+        plt.savefig("sats_{}.png".format(index), bbox_inches='tight')
+        index += 1
+    except IndexError:
+        pass
 
 
 while True:
@@ -70,7 +75,7 @@ while True:
         print("{}:{}:{}".format(time.localtime()[3], time.localtime()[4], time.localtime()[5]))
         for key, value in satellites.items():
             print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[1], value[2], value[3]))
-        time.sleep(1)
+        time.sleep(0.5)
     except KeyboardInterrupt:
         break
 
