@@ -45,17 +45,21 @@ def plot(inp):
     try:
         global index
         dict_values = np.array(list(inp.values()), dtype=int)
-        sats = dict_values[:, 0]
+        sats = np.array(dict_values[:, 0], dtype=str)
         r = dict_values[:, 1]
         theta = np.deg2rad(dict_values[:, 2])
-        snr = np.round(dict_values[:, 3] / np.amax(dict_values) * 10, 2)
+        snr = np.round(dict_values[:, 3] / np.amax(dict_values[:, 3]), 3)
         color = color_list(snr)
 
         fig = plt.figure()
+
         ax = fig.add_subplot(111, projection='polar')
+
         ax.scatter(theta, r, c=color)
+
         for i, txt in enumerate(sats):
             ax.annotate(txt, (theta[i], r[i]))
+
         ax.set_xticks(np.arange(0, 2.0 * np.pi, np.pi / 18.0))
         ax.set_ylim(90, 0)
         ax.set_yticks(np.arange(0, 90, 10))
@@ -80,3 +84,4 @@ while True:
         break
 
 # https://github.com/BenjaminGC/ground-control.git
+
