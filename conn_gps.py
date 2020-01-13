@@ -1,5 +1,6 @@
 import serial
 import subprocess as sp
+import time
 
 gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 satellites = {}
