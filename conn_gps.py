@@ -26,8 +26,8 @@ def sat_data(data):
                         name_data[e] = int(name_data[e])
                 satellites[name] = name_data                # Creating satellite dictionary
             return satellites
-        except UnicodeError:
-            pass
+    except UnicodeError:
+        pass
 
 
 while True:
@@ -39,3 +39,6 @@ while True:
             print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[0], value[1], value[2]))
     except KeyboardInterrupt:
         break
+
+        
+# https://github.com/BenjaminGC/ground-control.git
