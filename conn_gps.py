@@ -34,8 +34,8 @@ def sat_data(data):
 while True:
     try:
         sat_data(gps)
-        time.sleep(1)
         sp.call('clear', shell=True)
+        time.sleep(1)
         for key, value in satellites.items():
             print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[0], value[1], value[2]))
     except KeyboardInterrupt:
