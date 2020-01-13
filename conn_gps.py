@@ -14,17 +14,17 @@ def sat_data(data):
         data[-1] = data[-1].split('*')[0]
         data.append(checksum_data)
         data = data[4:-1]
-    n_sats = int(len(data)/4)
-    for i in range(n_sats):
-        name = int(data[i*4])
-        name_data = data[i*4:(i*4)+4][1:]
-        for e in range(len(name_data)):
-            if name_data[e] == '':                  # if SNR = '' => sat is out of sight but connected
-                name_data[e] = 0
-            else:                                   # make all other values integers
-                name_data[e] = int(name_data[e])
-        satellites[name] = name_data                # Creating satellite dictionary
-    return satellites
+        n_sats = int(len(data)/4)
+        for i in range(n_sats):
+            name = int(data[i*4])
+            name_data = data[i*4:(i*4)+4][1:]
+            for e in range(len(name_data)):
+                if name_data[e] == '':                  # if SNR = '' => sat is out of sight but connected
+                    name_data[e] = 0
+                else:                                   # make all other values integers
+                    name_data[e] = int(name_data[e])
+            satellites[name] = name_data                # Creating satellite dictionary
+        return satellites
 
 
 while True:
