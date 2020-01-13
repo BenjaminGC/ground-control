@@ -1,5 +1,5 @@
 import serial
-import json
+import csv
 import subprocess as sp
 import time
 
@@ -32,17 +32,18 @@ def sat_data(gps):
         pass
 
 
-with open('samples.txt', 'w') as samples:
-    while True:
-        try:
-            sat_data(gps)
-            sp.call('clear', shell=True)
-            print("{}:{}:{}".format(time.localtime()[3], time.localtime()[4], time.localtime()[5]))
-            for key, value in satellites.items():
-                print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[1], value[2], value[3]))
-            samples.write(json.dumps(satellites))
-        except KeyboardInterrupt:
-            break
+samples = csv.writer(open("samples.csv", "w"))
+while True:
+    try:
+        sat_data(gps)
+        sp.call('clear', shell=True)
+        print("{}:{}:{}".format(time.localtime()[3], time.localtime()[4], time.localtime()[5]))
+        for key, value in satellites.items():
+            print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[1], value[2], value[3]))
+            samples.writerow([key, val])
+        samples.writerow("-")
+    except KeyboardInterrupt:
+        break
 
 
 # https://github.com/BenjaminGC/ground-control.git
