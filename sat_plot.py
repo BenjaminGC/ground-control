@@ -57,9 +57,11 @@ def plot(inp):
 
         ax.scatter(theta, r, c=color)
 
-        for i, txt in enumerate(sats):
-            ax.annotate(txt, (theta[i], r[i]))
-
+        # for i, txt in enumerate(sats):
+            # ax.annotate(txt, (theta[i], r[i]))
+            
+        ax.set_theta_zero_location('N')
+        ax.set_theta_direction(-1) 
         ax.set_xticks(np.arange(0, 2.0 * np.pi, np.pi / 18.0))
         ax.set_ylim(90, 0)
         ax.set_yticks(np.arange(0, 90, 10))
