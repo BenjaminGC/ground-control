@@ -5,18 +5,15 @@ gps = serial.Serial("/dev/ttyUSB0", baudrate=4800, timeout=5)
 satellites = {}
 
 
-def sat_data(gps):
+def sat_data(data):
+    global satellites
     line = str(gps.readline(), 'ASCII')
     data = line.split(',')
     if data[0] == '$GPGSV':
         checksum_data = data[-1].split('*')[1].split('\r')[0]
         data[-1] = data[-1].split('*')[0]
         data.append(checksum_data)
-        return data[4:-1]
-
-
-def sat_(data):
-    global satellites
+        data = data[4:-1]
     n_sats = int(len(data)/4)
     for i in range(n_sats):
         name = int(data[i*4])
@@ -32,8 +29,7 @@ def sat_(data):
 
 while True:
     try:
-        filtered_data = sat_data(gps)
-        sat_(filtered_data)
+        sat_data(gps)
         time.sleep(1)
         sp.call('clear', shell=True)
         for key, value in satellites.items():
