@@ -44,7 +44,6 @@ def color_list(e):
 def plot(inp):
     global index
     dict_values = np.array(list(inp.values()), dtype=int)
-    sats = dict_values[:, 0]
     r = dict_values[:, 1]
     theta = np.deg2rad(dict_values[:, 2])
     snr = np.round(dict_values[:, 3] / np.amax(dict_values) * 10, 2)
