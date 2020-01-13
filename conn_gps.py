@@ -33,7 +33,7 @@ def sat_data(data):
 
 while True:
     try:
-        sp.call('clear', shell=True
+        sp.call('clear', shell=True)
         sat_data(gps)    
         for key, value in satellites.items():
             print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[0], value[1], value[2]))
