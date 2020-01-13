@@ -76,7 +76,7 @@ def plot(inp):
 while True:
     try:
         sat_data(gps)
-        sp.call('clear', shell=True)
+        # sp.call('clear', shell=True)
         print("{}:{}:{}".format(time.localtime()[3], time.localtime()[4], time.localtime()[5]))
         for key, value in satellites.items():
             print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[1], value[2], value[3]))
