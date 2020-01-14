@@ -42,6 +42,7 @@ while True:
             print("Satellite {}: elevation = {}, azimuth = {}, SNR = {}".format(key, value[1], value[2], value[3]))
             samples.writerow([key, value])
         samples.writerow("-")
+        time.sleep(60)
     except KeyboardInterrupt:
         break
 
