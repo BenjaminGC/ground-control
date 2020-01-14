@@ -45,7 +45,7 @@ while True:
         for key, value in satellites.items():
             samples.writerow([key, value])
         samples.writerow("-")
-        time.sleep(1)
+        time.sleep(30)
     except KeyboardInterrupt:
         break
 
